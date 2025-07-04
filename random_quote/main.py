@@ -1,16 +1,25 @@
 import requests
 import turtle
 
+QUOTES = "https://dummyjson.com/quotes/random"
+AUTHOR = "author"
+QUOTE = "quote"
+BGCOLOR = "lightyellow"
+ALIGNMENT = "center"
+FONT = "TimeNewRoman"
+BOLD = "bold"
+ITALIC = "italic"
+
 def main():
     # Make a request to the dummyjson endpoint and parse out the quote and the author
-    response = requests.get("https://dummyjson.com/quotes/random")
+    response = requests.get(QUOTES)
     data = response.json()
-    author = data["author"]
-    quote = data["quote"]
+    author = data[AUTHOR]
+    quote = data[QUOTE]
 
     # Create and setup turtle screen background color
     screen = turtle.Screen()
-    screen.bgcolor("lightyellow")
+    screen.bgcolor(BGCOLOR)
 
     # Initialize and hide the turtle object
     t = turtle.Turtle()
@@ -19,12 +28,12 @@ def main():
     # Move turtle and write the quote
     t.penup()
     t.goto(0, 50)
-    t.write(quote, align="center", font=("TimeNewRoman", 16, "italic"))
+    t.write(quote, align=ALIGNMENT, font=(FONT, 16, ITALIC))
 
     # Move turtle and write the author
     t.penup()
     t.goto(0, -50)
-    t.write(f"-{author}", align="center", font=("TimeNewRoman", 14, "bold"))
+    t.write(f"-{author}", align=ALIGNMENT, font=(FONT, 14, BOLD))
 
     # Show the output and wait for manually close window
     turtle.done()
